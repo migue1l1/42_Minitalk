@@ -6,7 +6,7 @@
 /*   By: pde-cast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:48:45 by pde-cast          #+#    #+#             */
-/*   Updated: 2025/04/07 17:57:15 by pde-cast         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:26:48 by pde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,34 @@
 #include <signal.h>
 #include "ft_printf/ft_printf.h"
 #include "libft/libft.h"
+
+char	*ft_strjoin2(char const *s1, char s2)
+{
+	char	*ret;
+	int		c1;
+	int		c3;
+
+	c1 = -1;
+	c3 = -1;
+	if (!s1 && !s2)
+		return (NULL);
+	ret = ft_calloc(sizeof(char) , (ft_strlen(s1) + 4));
+	if (!ret)
+		return (NULL);
+	while (s1[++c1] != '\0')
+	{
+		ret[++c3] = s1[c1];
+	}
+
+	ret[++c3] = s2;
+	if(s2 == '\0')
+	{
+		ft_printf("%s\n", ret);
+		free(ret);
+		return NULL;
+	}
+	return (ret);
+}
 
 void	bit_handler(int signal)
 {
@@ -27,16 +55,8 @@ void	bit_handler(int signal)
 	if (bit == 8)
 	{
 		if (!message)
-			message = malloc(1);
-		message = ft_strjoin(message, &i);
-		if (i == '\0')
-		{
-			usleep(2);
-			ft_printf("%s", message);
-			ft_printf("%c", '\n');
-			ft_memset(message, 0, ft_strlen(message));
-			//free(message);
-		}
+			message = ft_calloc(1, sizeof(char) + 1);
+		message = ft_strjoin2(message, i);
 		bit = 0;
 		i = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: pde-cast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:28:09 by pde-cast          #+#    #+#             */
-/*   Updated: 2025/03/11 20:49:34 by pde-cast         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:27:10 by pde-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	send_bit(int pid, char i)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(300);
+		usleep(1000);
 		bit++;
 	}
 }
